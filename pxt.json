@@ -1,5 +1,6 @@
 {
     "name": "Color Sensor",
+    "version": "1.20250817.1",
     "description": "",
     "dependencies": {
         "core": "*",

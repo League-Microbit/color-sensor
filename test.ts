@@ -1,6 +1,7 @@
 // tests go here; this will not be compiled when this package is used as an extension.
 
 serial.writeLine("Starting color sensor interactive test")
+
 let c = new color.tcs3472(0x29, DigitalPin.P16)
 c.setLEDs(1)
 c.setIntegrationTime(250)
@@ -9,12 +10,7 @@ let learningIndex = 0
 let inDetectMode = false
 
 function learnCurrent() {
-	inDetectMode = false
-	basic.showNumber(learningIndex)
-	serial.writeLine("Learning color index " + learningIndex)
-	c.learnColor(learningIndex)
-	serial.writeLine("Learned Lab: " + c.learnedColors[learningIndex])
-	inDetectMode = true
+
 }
 
 // Button A cycles learning a new color (or re-learns existing) and then enters detect mode
@@ -24,7 +20,13 @@ input.onButtonPressed(Button.A, function () {
 		learningIndex++
 		if (learningIndex > 9) learningIndex = 0 // wrap after 10 colors
 	}
-	learnCurrent()
+
+	inDetectMode = false
+	basic.showNumber(learningIndex)
+	serial.writeLine("Learning color index " + learningIndex)
+	c.learnColor(learningIndex)
+	serial.writeLine("Learned Lab: " + c.learnedColors[learningIndex])
+	inDetectMode = true
 })
 
 // Button B: dump learned colors in array-of-arrays form suitable for setLearnedColors
