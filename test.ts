@@ -3,6 +3,7 @@
 serial.writeLine("Starting color sensor interactive test")
 let c = new color.tcs3472(0x29, DigitalPin.P16)
 c.setLEDs(1)
+c.setIntegrationTime(250)
 
 let learningIndex = 0
 let inDetectMode = false
@@ -28,11 +29,18 @@ input.onButtonPressed(Button.A, function () {
 
 // Button B: dump learned colors in array-of-arrays form suitable for setLearnedColors
 input.onButtonPressed(Button.B, function () {
-	const labs = c.getLearnedColors()
+    const labs = c.getLearnedColors()
+    
+	if (!labs || labs.length == 0) {
+		serial.writeLine("learnedColors=[]")
+		return
+	}
+	// For large lists, chunk output to reduce memory pressure
 	serial.writeLine("learnedColors=[")
 	for (let i = 0; i < labs.length; i++) {
 		const t = labs[i]
-		serial.writeLine("  [" + t[0] + ", " + t[1] + ", " + t[2] + "]" + (i < labs.length - 1 ? "," : ""))
+		serial.writeLine("[" + t[0] + "," + t[1] + "," + t[2] + "]" + (i < labs.length - 1 ? "," : ""))
+		basic.pause(5) // yield to avoid watchdog/panic
 	}
 	serial.writeLine("]")
 })

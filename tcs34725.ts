@@ -1,6 +1,39 @@
 
 namespace color {
 
+    // Basic color enumeration
+    //% enum
+    export enum BasicColor {
+        //% block="yellow"
+        Yellow = 0,
+        //% block="green"
+        Green = 1,
+        //% block="blue"
+        Blue = 2,
+        //% block="purple"
+        Purple = 3,
+        //% block="red"
+        Red = 4,
+        //% block="orange"
+        Orange = 5,
+        //% block="pink"
+        Pink = 6,
+        //% block="nothing"
+        Nothing = 7
+    }
+
+    let learnedColors=[               
+        [52,-1,16],    // Yellow
+        [55,-11,23],   // Green
+        [57,-3,2],     // Blue
+        [54,0,11],     // Purple
+        [54,3,12],    // Red
+        [53,6,15],    // Orange
+        [53,7,13],    // Pink
+        [48,-8,9]     // Nothing
+        ]
+
+
     //% color=#00A2E8 icon="\uf043" block="Color Sensor"
     export class tcs3472 {
         is_setup: boolean
@@ -194,13 +227,7 @@ namespace color {
         /** Get a copy of learned Lab colors */
         //% block="get learned colors from %this=sensor"
         getLearnedColors(): number[][] {
-            // return deep-ish copy to avoid external mutation of internal array
-            let out: number[][] = []
-            for (let i = 0; i < this.learnedColors.length; i++) {
-                const c = this.learnedColors[i]
-                out.push([c[0], c[1], c[2]])
-            }
-            return out
+            return this.learnedColors
         }
 
         /** Enable or disable debug serial logging */
