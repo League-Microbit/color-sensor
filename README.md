@@ -26,6 +26,32 @@ basic.forever(function () {
 })
 
 ```
+
+## Training
+
+When training to colors, you should first train to nothing, where "nothing" is
+the most common case for not having an object to detect. 
+
+## Optimal Color Combinations
+
+For the colored foam [blocks](https://a.co/d/byQEdAA) and
+[balls](https://a.co/d/8Ldz7Xi)  
+we use in League classes, some colors are more easily seperable than others. The
+most seperable pairs are:
+
+* Green - Blue: 22.56
+* Yellow - Pink: 8.60
+* Purple - Orange: 7.28
+
+For groups of three, this is the most seperable division, where the colors in
+each group are most distinguishable ffrom the other colors in the gorup 
+
+* Group 1: Yellow, Blue, Orange
+* Group 2: Green, Purple, Pink
+
+
+
+
 ## Use as Extension
 
 This repository can be added as an **extension** in MakeCode.
