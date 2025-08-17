@@ -8,10 +8,8 @@
         "envirobit": "github:pimoroni/pxt-envirobit#v0.0.5"
     },
     "files": [
-        "main.blocks",
-        "main.ts",
         "README.md",
-        "custom.ts"
+        "tcs34725.ts"
     ],
     "testFiles": [
         "test.ts"
