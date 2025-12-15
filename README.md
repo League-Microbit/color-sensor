@@ -7,7 +7,7 @@ extracted from the [extenstion for the Pimironi Enviro:bit](https://github.com/p
 
 Example code:
 
-```javascript
+```blocks
 
 // Pin 16 is the LED lamp pin. 
 let c = new tcs3472(0x29, DigitalPin.P16);
